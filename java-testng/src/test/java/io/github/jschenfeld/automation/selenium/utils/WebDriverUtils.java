@@ -13,6 +13,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import io.appium.java_client.MobileDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebDriverUtils {
@@ -104,6 +106,37 @@ public class WebDriverUtils {
 				return new RemoteWebDriver(getHubUrl(), caps);
 			}
 		},
+		CHROME_MOBILE_ANDROID {
+			@Override
+			public WebDriver build() {
+				System.out.println("Remote Chrome Mobile");
+
+				DesiredCapabilities caps = DesiredCapabilities.chrome();
+				caps.setPlatform(Platform.ANDROID);
+				caps.setCapability("platformName", Platform.ANDROID);
+				caps.setCapability("deviceName", "Galaxy Tab A (2016)");
+				return new AndroidDriver<>(getHubUrl(), caps);
+			}
+		},
+		REMOTE_CHROME_MOBILE_ANDROID {
+			@Override
+			public WebDriver build() {
+				System.out.println("Remote Chrome Mobile");
+//				Map<String, String> mobileEmulation = new HashMap<>();
+//				mobileEmulation.put("deviceName", "iPhone X");
+//				
+//				ChromeOptions chromeOptions = new ChromeOptions();
+//				WebDriverManager.chromedriver().setup();
+
+				DesiredCapabilities caps = DesiredCapabilities.chrome();
+				caps.setPlatform(Platform.ANDROID);
+				caps.setCapability("platformName", Platform.ANDROID);
+				caps.setCapability("deviceName", "Galaxy Tab A (2016)");
+
+//				caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+				return new RemoteWebDriver(getHubUrl(), caps);
+			}
+		},
 		REMOTE_FIREFOX_WINDOWS {
 			@Override
 			public WebDriver build() {
@@ -119,8 +152,8 @@ public class WebDriverUtils {
 
 	public static URL getHubUrl() {
 		String hubUrl = System.getProperty("hubUrl");
-		if(hubUrl.isEmpty()) {
-			hubUrl = "http://localhost:4444/wd/hub";
+		if(null == hubUrl || hubUrl.isEmpty()) {
+			hubUrl = "http://127.0.0.1:4444/wd/hub";
 		}
 		
 		URL url = null;
