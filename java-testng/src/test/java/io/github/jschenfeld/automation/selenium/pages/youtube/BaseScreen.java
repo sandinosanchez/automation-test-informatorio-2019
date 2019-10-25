@@ -41,7 +41,7 @@ public abstract class BaseScreen {
 	/**
 	 * Screen constructor.
 	 *
-	 * @param pDriver An <code>AppiumDriver</code> instance.
+	 *  pDriver An <code>AppiumDriver</code> instance.
 	 */
 	public BaseScreen(AndroidDriver<WebElement> driver) throws MalformedURLException {
 		this.driver = driver;

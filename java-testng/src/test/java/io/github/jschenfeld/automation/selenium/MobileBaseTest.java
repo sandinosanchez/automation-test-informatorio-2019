@@ -21,8 +21,8 @@ public class MobileBaseTest {
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("fullReset", false);
 		caps.setCapability("clearSystemFiles", false);
-		caps.setCapability("appPackage", "com.google.android.youtube");
-		caps.setCapability("appActivity", "com.google.android.apps.youtube.app.WatchWhileActivity");
+		caps.setCapability("appPackage", "com.google.android.apps.classroom");
+		caps.setCapability("appActivity", "com.google.android.apps.classroom.courses.CoursesActivity");
 		caps.setCapability("deviceName", "R58M71DBJSR");
 		caps.setPlatform(Platform.ANDROID);
 		URL url = new URL("http://127.0.0.1:4444/wd/hub");
